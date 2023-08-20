@@ -1,4 +1,4 @@
 .env*
 !.env.example
 build/
-
+example/main.go
