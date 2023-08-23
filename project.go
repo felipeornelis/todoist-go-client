@@ -65,6 +65,10 @@ func (t Todoist) GetProjects() ([]Project, error) {
 }
 
 func (t Todoist) GetProject(id string) (Project, error) {
+	if id == "" {
+		return Project{}, errors.New("ID is required")
+	}
+
 	url := fmt.Sprintf("%s/%s", PROJECT_URL, id)
 
 	request, err := http.NewRequest(http.MethodGet, url, nil)
