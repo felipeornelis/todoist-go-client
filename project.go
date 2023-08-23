@@ -30,16 +30,16 @@ type Project struct {
 }
 
 func (t Todoist) GetProjects() ([]Project, error) {
-	client := &http.Client{
-		Timeout: time.Second * 10,
-	}
-
 	request, err := http.NewRequest(http.MethodGet, PROJECT_URL, nil)
 	if err != nil {
 		return nil, err
 	}
 
 	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", t.authToken))
+
+	client := &http.Client{
+		Timeout: time.Second * 10,
+	}
 
 	response, err := client.Do(request)
 	if err != nil {
@@ -67,13 +67,13 @@ func (t Todoist) GetProjects() ([]Project, error) {
 func (t Todoist) GetProject(id string) (Project, error) {
 	url := fmt.Sprintf("%s/%s", PROJECT_URL, id)
 
-	client := &http.Client{
-		Timeout: time.Second * 10,
-	}
-
 	request, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		return Project{}, err
+	}
+
+	client := &http.Client{
+		Timeout: time.Second * 10,
 	}
 
 	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", t.authToken))
