@@ -1,5 +1,7 @@
 package todoist
 
+const BASE_URL = "https://api.todoist.com/rest/v2"
+
 type Todoist struct {
 	authToken string
 }

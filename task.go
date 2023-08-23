@@ -152,6 +152,10 @@ type UpdateTaskArgs struct {
 }
 
 func (t Todoist) UpdateTask(args UpdateTaskArgs, id string) (Task, error) {
+	if id == "" {
+		return Task{}, errors.New("ID is required")
+	}
+
 	bodyRequest, err := json.Marshal(args)
 	if err != nil {
 		return Task{}, err
