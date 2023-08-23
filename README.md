@@ -1,6 +1,6 @@
 # Todoist Client Go
 
-This is an **unofficial** version of Go client for Todoist app. It's still in progress so it's definitely not recommended to be used in production.
+This is an **unofficial** version of Go client for Todoist app. It's still in progress so it's definitely not recommended to be used in production. It's still poorly documented as well.
 
 ## How to install
 ```bash

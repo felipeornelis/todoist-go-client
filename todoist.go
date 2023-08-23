@@ -16,14 +16,3 @@ func New(authToken string) Todoist {
 		authToken: authToken,
 	}
 }
-
-// type todoist struct {
-// 	token string
-// 	Task  task.Task
-// }
-
-// func New(token string) todoist {
-// 	return todoist{
-// 		token: token,
-// 	}
-// }
