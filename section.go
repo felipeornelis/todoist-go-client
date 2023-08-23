@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"time"
 )
 
 const SECTION_URL = BASE_URL + "/sections"
@@ -30,7 +29,7 @@ func (t Todoist) GetSections(id string) ([]Section, error) {
 	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", t.authToken))
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	response, err := client.Do(request)
@@ -71,7 +70,7 @@ func (t Todoist) GetSection(id string) (Section, error) {
 	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", t.authToken))
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	response, err := client.Do(request)
@@ -118,7 +117,7 @@ func (t Todoist) AddSection(args AddSectionArgs) (Section, error) {
 	request.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	response, err := client.Do(request)
@@ -173,7 +172,7 @@ func (t Todoist) UpdateSection(args UpdateSectionArgs, id string) (Section, erro
 	request.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	response, err := client.Do(request)
@@ -214,7 +213,7 @@ func (t Todoist) DeleteSection(id string) error {
 	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", t.authToken))
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	response, err := client.Do(request)

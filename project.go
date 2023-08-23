@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"time"
 
 	"github.com/felipeornelis/todoist-go-client/pkg"
 )
@@ -38,7 +37,7 @@ func (t Todoist) GetProjects() ([]Project, error) {
 	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", t.authToken))
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	response, err := client.Do(request)
@@ -77,7 +76,7 @@ func (t Todoist) GetProject(id string) (Project, error) {
 	}
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", t.authToken))
@@ -134,7 +133,7 @@ func (t Todoist) UpdateProject(args UpdateProjectArgs, id string) (Project, erro
 	request.Header.Set("X-Request-Id", pkg.NewUUID())
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	response, err := client.Do(request)
@@ -168,7 +167,7 @@ func (t Todoist) DeleteProject(id string) error {
 	url := fmt.Sprintf("%s/%s", PROJECT_URL, id)
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	request, err := http.NewRequest(http.MethodDelete, url, nil)
@@ -212,7 +211,7 @@ func (t Todoist) GetAllCollaborators(id string) ([]GetAllCollaboratorsOutput, er
 	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", t.authToken))
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	response, err := client.Do(request)

@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"time"
 
 	"github.com/felipeornelis/todoist-go-client/pkg"
 )
@@ -76,7 +75,7 @@ func (t Todoist) AddTask(args AddTaskArgs) (Task, error) {
 	url := "https://api.todoist.com/rest/v2/tasks"
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	request, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(bodyRequest))
@@ -164,7 +163,7 @@ func (t Todoist) UpdateTask(args UpdateTaskArgs, id string) (Task, error) {
 	url := fmt.Sprintf("https://api.todoist.com/rest/v2/tasks/%s", id)
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	request, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(bodyRequest))
@@ -221,7 +220,7 @@ func (t Todoist) CloseTask(id string) error {
 	url := fmt.Sprintf("https://api.todoist.com/rest/v2/tasks/%s/close", id)
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	request, err := http.NewRequest(http.MethodPost, url, nil)
@@ -248,7 +247,7 @@ func (t Todoist) ReopenTask(id string) error {
 	url := fmt.Sprintf("https://api.todoist.com/rest/v2/tasks/%s/reopen", id)
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	request, err := http.NewRequest(http.MethodPost, url, nil)
@@ -275,7 +274,7 @@ func (t Todoist) DeleteTask(id string) error {
 	url := fmt.Sprintf("https://api.todoist.com/rest/v2/tasks/%s", id)
 
 	client := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: MAX_TIMEOUT,
 	}
 
 	request, err := http.NewRequest(http.MethodDelete, url, nil)
